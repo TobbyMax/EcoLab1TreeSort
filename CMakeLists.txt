@@ -40,6 +40,17 @@ add_library(
         HeaderFiles/CEcoLab1Factory.h
 )
 
+add_library(
+        1F5DF16EE1BF43B999A434ED38FE8F3D
+        SHARED
+        SourceFiles/CEcoLab1.c
+        SourceFiles/CEcoLab1Factory.c
+        SharedFiles/IdEcoLab1.h
+        SharedFiles/IEcoLab1.h
+        HeaderFiles/CEcoLab1.h
+        HeaderFiles/CEcoLab1Factory.h
+)
+
 add_executable(
         Lab1
         UnitTestFiles/SourceFiles/EcoLab1.c
@@ -49,7 +60,7 @@ add_executable(
         HeaderFiles/CEcoLab1Factory.h
 )
 
-target_link_libraries(Lab1 1F5DF16EE1BF43B999A434ED38FE8F3A)
+target_link_libraries(Lab1 1F5DF16EE1BF43B999A434ED38FE8F3A 1F5DF16EE1BF43B999A434ED38FE8F3D)
 target_link_libraries(
         Lab1
         $ENV{ECO_FRAMEWORK}/Eco.InterfaceBus1/BuildFiles/Windows/x86/StaticRelease/00000000000000000000000042757331.lib
