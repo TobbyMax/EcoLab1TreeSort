@@ -1,5 +1,4 @@
 # Project exclude paths
 /cmake-build-debug-visual-studio/
+/cmake-build-release-visual-studio/
 /.idea/
-/graphing/.ipynb_checkpoints
-*.ipynb
