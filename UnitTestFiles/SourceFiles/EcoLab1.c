@@ -546,7 +546,7 @@ void bench(IEcoMemoryAllocator1 *pIMem, Sorter *sorterByType, IEcoLab1 *pIEcoLab
     /* unsigned int array with ascending values */
     printf("Benchmarking sorting algorithms\n");
     printf("Results will be stored in 'results.csv'\n");
-    fopen_s(&resultFile, "C:\\Users\\ageev\\CLionProjects\\Lab1\\results.csv", "w");
+    fopen_s(&resultFile, "results.csv", "w");
     fprintf(resultFile, "algorithm,type,size,time\n");
     for (i = 0; i < 7; ++i) {
         for (j = 0; j < 4; j++) {
