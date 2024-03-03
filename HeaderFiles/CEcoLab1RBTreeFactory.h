@@ -17,8 +17,8 @@
  *
  */
 
-#ifndef __C_ECOLAB1_FACTORY_H__
-#define __C_ECOLAB1_FACTORY_H__
+#ifndef __C_ECOLAB1RBTREE_FACTORY_H__
+#define __C_ECOLAB1RBTREE_FACTORY_H__
 
 #include "IEcoSystem1.h"
 
@@ -39,4 +39,4 @@ typedef struct CEcoLab1RBTreeFactory {
 
 } CEcoLab1RBTreeFactory;
 
-#endif /* __C_ECOLAB1_FACTORY_H__ */
+#endif /* __C_ECOLAB1RBTREE_FACTORY_H__ */

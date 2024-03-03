@@ -43,12 +43,12 @@ add_library(
 add_library(
         1F5DF16EE1BF43B999A434ED38FE8F3D
         SHARED
-        SourceFiles/CEcoLab1.c
-        SourceFiles/CEcoLab1Factory.c
+        SourceFiles/CEcoLab1RBTree.c
+        SourceFiles/CEcoLab1RBTreeFactory.c
         SharedFiles/IdEcoLab1.h
         SharedFiles/IEcoLab1.h
-        HeaderFiles/CEcoLab1.h
-        HeaderFiles/CEcoLab1Factory.h
+        HeaderFiles/CEcoLab1RBTree.h
+        HeaderFiles/CEcoLab1RBTreeFactory.h
 )
 
 add_executable(

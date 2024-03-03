@@ -123,11 +123,51 @@ int __cdecl compareString(const void *a_ptr, const void *b_ptr) {
 /*
  *
  * <сводка>
+ *   Функция generateAscendingIntArray
+ * </сводка>
+ *
+ * <описание>
+ *   Функция аллокации и генерации массива типа int, заданного размера с возрастающими значениями
+ * </описание>
+ *
+ */
+void *generateAscendingIntArray(IEcoMemoryAllocator1 *pIMem, size_t size) {
+    size_t i;
+    int *arr = (int *) pIMem->pVTbl->Alloc(pIMem, size * sizeof(int));
+    for (i = 0; i < size; i++) {
+        arr[i] = (int) i;
+    }
+    return arr;
+}
+
+/*
+ *
+ * <сводка>
+ *   Функция generateAscendingDoubleArray
+ * </сводка>
+ *
+ * <описание>
+ *   Функция аллокации и генерации массива типа double, заданного размера с возрастающими значениями
+ * </описание>
+ *
+ */
+void *generateAscendingDoubleArray(IEcoMemoryAllocator1 *pIMem, size_t size) {
+    size_t i;
+    double *arr = (double *) pIMem->pVTbl->Alloc(pIMem, size * sizeof(double));
+    for (i = 0; i < size; i++) {
+        arr[i] = (double) i / 10;
+    }
+    return arr;
+}
+
+/*
+ *
+ * <сводка>
  *   Функция generateRandomIntArray
  * </сводка>
  *
  * <описание>
- *   Функция аллокации генерации массива типа int, заданного размера
+ *   Функция аллокации и генерации случайного массива типа int, заданного размера
  * </описание>
  *
  */
@@ -148,7 +188,7 @@ void *generateRandomIntArray(IEcoMemoryAllocator1 *pIMem, size_t size) {
  * </сводка>
  *
  * <описание>
- *   Функция аллокации генерации массива типа float, заданного размера
+ *  Функция аллокации и генерации случайного массива типа float, заданного размера
  * </описание>
  *
  */
@@ -168,7 +208,7 @@ void *generateRandomFloatArray(IEcoMemoryAllocator1 *pIMem, size_t size) {
  * </сводка>
  *
  * <описание>
- *   Функция аллокации генерации массива типа double, заданного размера
+ *   Функция аллокации и генерации случайного массива типа double, заданного размера
  * </описание>
  *
  */
@@ -188,7 +228,7 @@ void *generateRandomDoubleArray(IEcoMemoryAllocator1 *pIMem, size_t size) {
  * </сводка>
  *
  * <описание>
- *   Функция аллокации генерации массива типа string, заданного размера
+ *   Функция аллокации и генерации случайного массива типа string, заданного размера
  * </описание>
  *
  */
@@ -452,7 +492,8 @@ BenchResults benchSorting(IEcoMemoryAllocator1 *pIMem, Sorter *sorting, size_t s
     double lab_sort_bintree, std_sort, lab_sort_rbtree;
     BenchResults result;
 
-    lab_sort_bintree = benchmarkSortingFunc(lab1->pVTbl->qsort, lab1, p_arr, size, sorting->elem_size, sorting->compare);
+    lab_sort_bintree = benchmarkSortingFunc(lab1->pVTbl->qsort, lab1, p_arr, size, sorting->elem_size,
+                                            sorting->compare);
     sorting->deleteArray(pIMem, p_arr, size);
 
     std_sort = benchmarkSortingFunc(stdQsort, 0, p_arr_copy_1, size, sorting->elem_size, sorting->compare);
@@ -542,13 +583,26 @@ void benchAndWriteResultToFile(FILE *file, IEcoMemoryAllocator1 *pIMem, IEcoLab1
  */
 void bench(IEcoMemoryAllocator1 *pIMem, Sorter *sorterByType, IEcoLab1 *pIEcoLab1, IEcoLab1 *pIEcoLab1RBTree) {
     FILE *resultFile;
-    size_t i, j, sizes[7] = {10000, 50000, 100000, 250000, 500000, 1000000, 2000000};
-    /* unsigned int array with ascending values */
+    size_t i, j, sizes[10] = {3000, 5000, 10000, 20000, 30000, 100000, 250000, 500000, 1000000, 2000000};
+    /* arrays with ascending values */
+    Sorter sortersAscending[2] = {
+            /* int */
+            {"int_ascending", sizeof(int), generateAscendingIntArray, compareInt, deleteArray, cloneArray,
+             printIntArray},
+            /* double */
+            {"double_ascending", sizeof(double), generateAscendingDoubleArray, compareDouble, deleteArray, cloneArray,
+             printDoubleArray},
+    };
     printf("Benchmarking sorting algorithms\n");
     printf("Results will be stored in 'results.csv'\n");
     fopen_s(&resultFile, "results.csv", "w");
     fprintf(resultFile, "algorithm,type,size,time\n");
-    for (i = 0; i < 7; ++i) {
+    for (i = 0; i < 4; ++i) {
+        for (j = 0; j < 2; j++) {
+            benchAndWriteResultToFile(resultFile, pIMem, pIEcoLab1, pIEcoLab1RBTree, &sortersAscending[j], sizes[i]);
+        }
+    }
+    for (i = 0; i < 10; ++i) {
         for (j = 0; j < 4; j++) {
             benchAndWriteResultToFile(resultFile, pIMem, pIEcoLab1, pIEcoLab1RBTree, &sorterByType[j], sizes[i]);
         }
