@@ -72,6 +72,7 @@
 * `IEcoCalculatorX`
 * `IEcoCalculatorY`
 
+Компоненты, через которые реализуются интерфейсы:
 * `IEcoCalculatorY` может быть реализован при помощи механизма включения компонентов `CEcoCalculatorD` или `CEcoCalculatorE`.
 * `IEcoCalculatorX` реализован при помощи агрегирования компонента `CEcoCalculatorB` или включения компонента `CEcoCalculatorA`.
 
