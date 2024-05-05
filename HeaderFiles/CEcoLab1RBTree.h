@@ -23,12 +23,34 @@
 #include "IEcoLab1.h"
 #include "IEcoSystem1.h"
 #include "IdEcoMemoryManager1.h"
+#include "IEcoCalculatorY.h"
+#include "IEcoCalculatorX.h"
+//#include "IEcoEnumConnections.h"
+//#include "IEcoConnectionPointContainer.h"
+//#include "CEcoLab1ConnectionPoint.h"
+
+typedef struct RBNode {
+    void *val;
+    struct RBNode *left;
+    struct RBNode *right;
+    struct RBNode *parent;
+    unsigned char color;
+} RBNode;
+
 
 typedef struct CEcoLab1RBTree {
 
     /* Таблица функций интерфейса IEcoLab1 */
     IEcoLab1VTbl* m_pVTblIEcoLab1;
 
+    /* Таблица функций интерфейса IEcoCalculatorY */
+    IEcoCalculatorYVTbl* m_pVTblIY;
+
+    /* Таблица функций интерфейса IEcoCalculatorX */
+    IEcoCalculatorXVTbl* m_pVTblIX;
+
+    /* Неделегирующий интерфейс IEcoNondelegatingUnknown */
+    IEcoUnknownVTbl* m_pVTblINondelegatingUnk;
 
     /* Счетчик ссылок */
     uint32_t m_cRef;
@@ -41,6 +63,18 @@ typedef struct CEcoLab1RBTree {
 
     /* Данные экземпляра */
     char_t* m_Name;
+
+    /* Ссылка на внутренний компонент для включения, может быть получен из D или E */
+    IEcoCalculatorY* m_pIY;
+
+    /* Ссылка на интерфейс IEcoUnknown внутреннего агрегируемого компонента B */
+    IEcoUnknown* m_pInnerUnknown;
+
+    /* Ссылка на внутренний компонент для включения, может быть получен из A*/
+    IEcoCalculatorX* m_pIX;
+
+    /* Делегирующий IEcoUnknown, указывает на внешний или неделегирующий IEcoUnknown */
+    IEcoUnknown* m_pIUnkOuter;
 
 } CEcoLab1RBTree, *CEcoLab1RBTreePtr;
 

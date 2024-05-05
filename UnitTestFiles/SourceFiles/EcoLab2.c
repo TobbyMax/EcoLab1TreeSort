@@ -158,14 +158,14 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
     printf("\n");
 
     /* запрос интерфейса IEcoCalculatorX через IEcoLab1 */
-    result = pIEcoLab1BinTree->pVTbl->QueryInterface(pIEcoLab1BinTree, &IID_IEcoCalculatorX, (void **) &pIX);
+    result = pIEcoLab1RBTree->pVTbl->QueryInterface(pIEcoLab1RBTree, &IID_IEcoCalculatorX, (void **) &pIX);
     if (result != 0 || pIX == 0) {
         goto Release;
     }
     printf("EcoCalculatorX interface queried successfully from IEcoLab1\n");
 
     /* запрос интерфейса IEcoCalculatorY через IEcoLab1 */
-    result = pIEcoLab1BinTree->pVTbl->QueryInterface(pIEcoLab1BinTree, &IID_IEcoCalculatorY, (void **) &pIY);
+    result = pIEcoLab1RBTree->pVTbl->QueryInterface(pIEcoLab1RBTree, &IID_IEcoCalculatorY, (void **) &pIY);
     if (result != 0 || pIY == 0) {
         goto Release;
     }
@@ -186,24 +186,24 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
     printf("__________________________________________\n");
     printf("\nTest that interfaces can be queried as expected:\n");
 
-    result = pIEcoLab1BinTree->pVTbl->QueryInterface(pIEcoLab1BinTree, &IID_IEcoCalculatorX, (void **) &pIX);
+    result = pIEcoLab1RBTree->pVTbl->QueryInterface(pIEcoLab1RBTree, &IID_IEcoCalculatorX, (void **) &pIX);
     if (result == 0) {
         printf("+ IEcoCalculatorX can be queried from IEcoLab1\n");
         pIX->pVTbl->Release(pIX);
     } else {
         printf("- Failed to query IEcoCalculatorX from IEcoLab1\n");
     }
-    result = pIEcoLab1BinTree->pVTbl->QueryInterface(pIEcoLab1BinTree, &IID_IEcoCalculatorY, (void **) &pIY);
+    result = pIEcoLab1RBTree->pVTbl->QueryInterface(pIEcoLab1RBTree, &IID_IEcoCalculatorY, (void **) &pIY);
     if (result == 0) {
         printf("+ IEcoCalculatorY can be queried from IEcoLab1\n");
         pIY->pVTbl->Release(pIY);
     } else {
         printf("- Failed to query IEcoCalculatorX from IEcoLab1\n");
     }
-    result = pIEcoLab1BinTree->pVTbl->QueryInterface(pIEcoLab1BinTree, &IID_IEcoLab1, (void **) &pIEcoLab1BinTree);
+    result = pIEcoLab1RBTree->pVTbl->QueryInterface(pIEcoLab1RBTree, &IID_IEcoLab1, (void **) &pIEcoLab1RBTree);
     if (result == 0) {
         printf("+ IEcoLab1 can be queried from IEcoLab1\n");
-        pIEcoLab1BinTree->pVTbl->Release(pIEcoLab1BinTree);
+        pIEcoLab1RBTree->pVTbl->Release(pIEcoLab1RBTree);
     } else {
         printf("- Failed to query IEcoLab1 from IEcoLab1\n");
     }
@@ -223,10 +223,10 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
     } else {
         printf("- Failed to query IEcoCalculatorY from IEcoCalculatorY\n");
     }
-    result = pIY->pVTbl->QueryInterface(pIY, &IID_IEcoLab1, (void **) &pIEcoLab1BinTree);
+    result = pIY->pVTbl->QueryInterface(pIY, &IID_IEcoLab1, (void **) &pIEcoLab1RBTree);
     if (result == 0) {
         printf("+ IEcoLab1 can be queried from IEcoCalculatorY\n");
-        pIEcoLab1BinTree->pVTbl->Release(pIEcoLab1BinTree);
+        pIEcoLab1RBTree->pVTbl->Release(pIEcoLab1RBTree);
     } else {
         printf("- Failed to query IEcoLab1 from IEcoCalculatorY\n");
     }
@@ -246,10 +246,10 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
     } else {
         printf("- Failed to query IEcoCalculatorY from IEcoCalculatorX\n");
     }
-    result = pIX->pVTbl->QueryInterface(pIX, &IID_IEcoLab1, (void **) &pIEcoLab1BinTree);
+    result = pIX->pVTbl->QueryInterface(pIX, &IID_IEcoLab1, (void **) &pIEcoLab1RBTree);
     if (result == 0) {
         printf("+ IEcoLab1 can be queried from IEcoCalculatorX\n");
-        pIEcoLab1BinTree->pVTbl->Release(pIEcoLab1BinTree);
+        pIEcoLab1RBTree->pVTbl->Release(pIEcoLab1RBTree);
     } else {
         printf("- Failed to query IEcoLab1 from IEcoCalculatorX\n");
     }
@@ -272,14 +272,14 @@ int16_t EcoMain(IEcoUnknown* pIUnk) {
 
     printf("\nCalculator Test Runs:\n");
     /* запрос интерфейса IEcoCalculatorX через IEcoLab2 */
-    result = pIEcoLab1BinTree->pVTbl->QueryInterface(pIEcoLab2, &IID_IEcoCalculatorX, (void **) &pIX);
+    result = pIEcoLab1RBTree->pVTbl->QueryInterface(pIEcoLab2, &IID_IEcoCalculatorX, (void **) &pIX);
     if (result != 0 || pIX == 0) {
         goto Release;
     }
     printf("EcoCalculatorX interface queried successfully from IEcoLab2\n");
 
     /* запрос интерфейса IEcoCalculatorY через IEcoLab2 */
-    result = pIEcoLab1BinTree->pVTbl->QueryInterface(pIEcoLab2, &IID_IEcoCalculatorY, (void **) &pIY);
+    result = pIEcoLab1RBTree->pVTbl->QueryInterface(pIEcoLab2, &IID_IEcoCalculatorY, (void **) &pIY);
     if (result != 0 || pIY == 0) {
         goto Release;
     }
@@ -311,13 +311,13 @@ Release:
     }
 
     /* Освобождение тестируемого интерфейса */
-    if (pIEcoLab1BinTree != 0) {
-        pIEcoLab1BinTree->pVTbl->Release(pIEcoLab1BinTree);
+    if (pIEcoLab1RBTree != 0) {
+        pIEcoLab1RBTree->pVTbl->Release(pIEcoLab1RBTree);
     }
 
     /* Освобождение тестируемого интерфейса */
-    if (pIEcoLab1RBTree != 0) {
-        pIEcoLab1RBTree->pVTbl->Release(pIEcoLab1RBTree);
+    if (pIEcoLab1BinTree != 0) {
+        pIEcoLab1BinTree->pVTbl->Release(pIEcoLab1BinTree);
     }
 
     if (pIEcoLab2 != 0) {
