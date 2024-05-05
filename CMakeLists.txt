@@ -18,7 +18,7 @@ add_definitions(-D_CONSOLE)
 
 include_directories(HeaderFiles)
 include_directories(SharedFiles)
-include_directories(UnitTest/HeaderFiles)
+include_directories(UnitTestFiles/HeaderFiles)
 
 include_directories(CalculatorComponents/SharedFiles)
 
@@ -54,10 +54,17 @@ add_library(
         SHARED
         SourceFiles/CEcoLab1RBTree.c
         SourceFiles/CEcoLab1RBTreeFactory.c
-        SharedFiles/IdEcoLab1.h
+        SharedFiles/IdEcoLab1RBTree.h
         SharedFiles/IEcoLab1.h
         HeaderFiles/CEcoLab1RBTree.h
         HeaderFiles/CEcoLab1RBTreeFactory.h
+
+        CalculatorComponents/SharedFiles/IEcoCalculatorY.h
+        CalculatorComponents/SharedFiles/IEcoCalculatorX.h
+        CalculatorComponents/SharedFiles/IdEcoCalculatorD.h
+        CalculatorComponents/SharedFiles/IdEcoCalculatorE.h
+        CalculatorComponents/SharedFiles/IdEcoCalculatorA.h
+        CalculatorComponents/SharedFiles/IdEcoCalculatorB.h
 )
 
 add_executable(
@@ -67,6 +74,9 @@ add_executable(
         SharedFiles/IEcoLab1.h
         HeaderFiles/CEcoLab1.h
         HeaderFiles/CEcoLab1Factory.h
+        SharedFiles/IdEcoLab1RBTree.h
+        HeaderFiles/CEcoLab1RBTree.h
+        HeaderFiles/CEcoLab1RBTreeFactory.h
 
         CalculatorComponents/SharedFiles/IEcoCalculatorY.h
         CalculatorComponents/SharedFiles/IEcoCalculatorX.h
@@ -96,6 +106,7 @@ target_link_libraries(
         $ENV{ECO_FRAMEWORK}/Eco.MemoryManager1/BuildFiles/Windows/x86/StaticRelease/0000000000000000000000004D656D31.lib
         $ENV{ECO_FRAMEWORK}/Eco.FileSystemManagement1/BuildFiles/Windows/x86/StaticRelease/00000000000000000000000046534D31.lib
         $ENV{ECO_FRAMEWORK}/Eco.System1/BuildFiles/Windows/x86/StaticRelease/00000000000000000000000000000100.lib
+        $ENV{ECO_FRAMEWORK}/Eco.List1/BuildFiles/Windows/x86/StaticRelease/53884AFC93C448ECAA929C8D3A562281.lib
 
         1F5DF16EE1BF43B999A434ED38FE8F3A
         1F5DF16EE1BF43B999A434ED38FE8F3D
