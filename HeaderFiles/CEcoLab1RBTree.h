@@ -17,17 +17,17 @@
  *
  */
 
-#ifndef __C_ECOLAB1_H__
-#define __C_ECOLAB1_H__
+#ifndef __C_ECOLAB1RBTREE_H__
+#define __C_ECOLAB1RBTREE_H__
 
 #include "IEcoLab1.h"
 #include "IEcoSystem1.h"
 #include "IdEcoMemoryManager1.h"
 #include "IEcoCalculatorY.h"
 #include "IEcoCalculatorX.h"
-//#include "IEcoEnumConnections.h"
-//#include "IEcoConnectionPointContainer.h"
-//#include "CEcoLab1ConnectionPoint.h"
+#include "IEcoEnumConnections.h"
+#include "IEcoConnectionPointContainer.h"
+#include "CEcoLab1ConnectionPoint.h"
 
 typedef struct RBNode {
     void *val;
@@ -52,6 +52,9 @@ typedef struct CEcoLab1RBTree {
     /* Неделегирующий интерфейс IEcoNondelegatingUnknown */
     IEcoUnknownVTbl* m_pVTblINondelegatingUnk;
 
+    /* Таблица функций интерфейса IEcoConnectionPointContainer */
+    IEcoConnectionPointContainerVTbl* m_pVTblICPC;
+
     /* Счетчик ссылок */
     uint32_t m_cRef;
 
@@ -60,6 +63,9 @@ typedef struct CEcoLab1RBTree {
 
     /* Системный интерфейс */
     IEcoSystem1* m_pISys;
+
+    /* Точка подключения */
+    CEcoLab1ConnectionPoint* m_pISinkCP;
 
     /* Данные экземпляра */
     char_t* m_Name;
@@ -85,4 +91,4 @@ int16_t ECOCALLMETHOD createCEcoLab1RBTree(/* in */ IEcoUnknown* pIUnkSystem, /*
 /* Удаление */
 void ECOCALLMETHOD deleteCEcoLab1RBTree(/* in */ IEcoLab1* pIEcoLab1RBTree);
 
-#endif /* __C_ECOLAB1_H__ */
+#endif /* __C_ECOLAB1RBTREE_H__ */
