@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.22)
-project(Lab2 C)
+project(Lab3 C)
 
 set(CMAKE_C_STANDARD 90)
 
@@ -65,11 +65,29 @@ add_library(
         CalculatorComponents/SharedFiles/IdEcoCalculatorE.h
         CalculatorComponents/SharedFiles/IdEcoCalculatorA.h
         CalculatorComponents/SharedFiles/IdEcoCalculatorB.h
+
+        SourceFiles/CEcoLab1ConnectionPoint.c
+        SourceFiles/CEcoLab1EnumConnectionPoints.c
+        SourceFiles/CEcoLab1EnumConnections.c
+        HeaderFiles/CEcoLab1ConnectionPoint.h
+        HeaderFiles/CEcoLab1EnumConnectionPoints.h
+        HeaderFiles/CEcoLab1EnumConnections.h
+
+        SharedFiles/IEcoConnectionPoint.h
+        SharedFiles/IEcoConnectionPointContainer.h
+        SharedFiles/IEcoEnumConnectionPoints.h
+        SharedFiles/IEcoEnumConnections.h
+        SharedFiles/IEcoLab1Events.h
 )
 
 add_executable(
-        Lab2
-        UnitTestFiles/SourceFiles/EcoLab2.c
+        Lab3
+        UnitTestFiles/SourceFiles/EcoLab3.c
+        UnitTestFiles/SourceFiles/CEcoLab1Sink.c
+        UnitTestFiles/HeaderFiles/CEcoLab1Sink.h
+        UnitTestFiles/SourceFiles/Utils.c
+        UnitTestFiles/HeaderFiles/Utils.h
+
         SharedFiles/IdEcoLab1.h
         SharedFiles/IEcoLab1.h
         HeaderFiles/CEcoLab1.h
@@ -101,7 +119,7 @@ add_library(
 )
 
 target_link_libraries(
-        Lab2
+        Lab3
         $ENV{ECO_FRAMEWORK}/Eco.InterfaceBus1/BuildFiles/Windows/x86/StaticRelease/00000000000000000000000042757331.lib
         $ENV{ECO_FRAMEWORK}/Eco.MemoryManager1/BuildFiles/Windows/x86/StaticRelease/0000000000000000000000004D656D31.lib
         $ENV{ECO_FRAMEWORK}/Eco.FileSystemManagement1/BuildFiles/Windows/x86/StaticRelease/00000000000000000000000046534D31.lib
